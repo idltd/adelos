@@ -1,6 +1,6 @@
 # Adelos
 
-> **I'm back. It's me. You don't know me — but you know it is me.**
+> **I'm back. It's me. You don't know me — but you do know it is me.**
 
 Pseudonymous hardware proof of continuity. A FOSS counter to centralised digital ID.
 
