@@ -1,6 +1,6 @@
 # Adelos — What It Does
 
-> **I'm back. It's me. You don't know me — but you know it is me.**
+> **I'm back. It's me. You don't know me — but you do know that it is me.**
 
 This is the plain-language guide. No cryptography. If you want the technical detail, see the [technical document](claims-technical.md).
 

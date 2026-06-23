@@ -1,6 +1,6 @@
 # Adelos
 
-> **I'm back. It's me. You don't know me — but you do know it is me.**
+> **I'm back. It's me. You don't know me — but you do know that it is me.**
 
 Pseudonymous hardware proof of continuity. A FOSS counter to centralised digital ID.
 
@@ -20,7 +20,7 @@ Governments and corporations are pushing centralised digital identity: a single 
 
 Adelos inverts it. The "issuer" is an £8 device you made. The proof is yours alone. Recognition without identification — you know it is the same one, you do not know who.
 
-This is **recognition without identification.** The system can verify continuity (it is the same one) while disclosing no identity (not who). That contradiction is only apparent — the device is exactly what makes "you don't know me but you know it is me" simultaneously true.
+This is **recognition without identification.** The system can verify continuity (it is the same one) while disclosing no identity (not who). That contradiction is only apparent — the device is exactly what makes "you don't know me but you do know that it is me" simultaneously true.
 
 ## How it works (in one line)
 
