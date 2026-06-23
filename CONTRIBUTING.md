@@ -24,4 +24,4 @@ See [SECURITY.md](SECURITY.md). Report privately, not via public issues.
 
 ## License
 
-By contributing you agree your contribution is licensed under GPL-3.0, consistent with the rest of the project.
+By contributing you agree your contribution is licensed under AGPL-3.0, consistent with the rest of the project.
