@@ -70,4 +70,4 @@ Early. Design and rationale are published; firmware, web library, and hardware f
 
 ## License
 
-FOSS. License to be finalised — intended to be permissive and reproducible by anyone.
+AGPL-3.0. Use freely; any modifications, including network services built on this code, must also be open.
