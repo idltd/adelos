@@ -13,7 +13,7 @@
 | Case | £0.50–3 | Physical protection and tamper-evidence |
 | **TOTAL** | **~£4–12** | Per unit at hobbyist quantities |
 
-No separate secure element IC. The ESP32-C3's on-die eFuse and HMAC peripheral replace the ATECC608A.
+No separate secure element IC required. The ESP32-C3's on-die eFuse and HMAC peripheral cover that function.
 
 ---
 
@@ -39,7 +39,7 @@ The C3 is the entire device. It provides:
 
 - **BLE radio** — connects to the host browser via Web Bluetooth (Chromium-based browsers only).
 - **eFuse key blocks** — 256-bit HMAC key burned at provisioning, write- and read-protected in silicon. The key cannot be extracted by software and is permanent.
-- **On-die HMAC peripheral** — computes `HMAC(K, salt)` in hardware without K ever appearing on a bus or in RAM accessible to application code.
+- **On-die HMAC peripheral** — computes `HMAC(K, salt ‖ nonce)` in hardware without K ever appearing on a bus or in RAM accessible to application code.
 - **Flash encryption and Secure Boot v2** — eFuse bits lock the firmware at commissioning. Post-lock, only OTA-signed updates are accepted; JTAG and UART download mode are disabled.
 - **Onboard LED** — anti-MITM pairing channel: blinks the device public key fingerprint on first connection so the host camera can read and pin it, defeating BLE man-in-the-middle substitution.
 
@@ -65,13 +65,6 @@ CR2032 is the simpler v1 path.
 ### 3.4 Case
 
 Physical protection and tamper-evidence. A well-fitted case makes opportunistic hardware tampering visible. Not a security boundary on its own, but raises the bar for casual physical attack.
-
-### 3.5 What Is Not In The BOM
-
-- **ATECC608A** — removed. C3 eFuse HMAC covers its function.
-- **USB connector (for use)** — not required. BLE is the session transport. USB is disabled post-commissioning by Secure Boot.
-- **Display** — not required. The LED covers the one visual output needed (pairing channel).
-- **Passives** (resistor for LED, decoupling caps) — pennies, omitted from cost table.
 
 ---
 
