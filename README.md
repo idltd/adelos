@@ -24,7 +24,7 @@ This is **recognition without identification.** The system can verify continuity
 
 ## How it works (in one line)
 
-The device computes `HMAC(K, salt)` with a key `K` burned irreversibly into the chip, gated by your fingerprint, delivered over Bluetooth to a web app. The output unwraps your encrypted data. The key never leaves the chip; the output is used and immediately discarded.
+The device issues a one-time nonce, waits for your fingerprint, then computes `HMAC(K, salt ‖ nonce)` with a key `K` burned irreversibly into the chip. The output is delivered over Bluetooth and used immediately. The key never leaves the chip; the nonce ensures the device never returns the same answer twice; the output is zeroed the moment it is used.
 
 ## The build
 
