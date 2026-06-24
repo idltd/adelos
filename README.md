@@ -65,7 +65,11 @@ A revoke is a doc signed by the key itself, saying "this key is dead." Once seen
 
 ## Status
 
-Early. Design and rationale are published; firmware, web library, and hardware files are in progress.
+- **Commissioning software** — built and working. Connects to an ESP32, selects architecture across variants.
+- **eFuse burning / Secure Boot** — specified and ready; deliberately not yet applied (irreversible steps, held until the rest is proven).
+- **Fingerprint sensor** — specified and integrated into the design; not yet sourced or assembled.
+- **BLE session protocol / web library** — designed; implementation is straightforward and in progress.
+- **Physical prototype** — not yet assembled end-to-end.
 
 ## License
 
