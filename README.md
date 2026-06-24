@@ -57,7 +57,6 @@ A revoke is a doc signed by the key itself, saying "this key is dead." Once seen
 - Bind that proof to your body via biometrics.
 - Keep you pseudonymous — no identity is ever disclosed.
 - Work with no third party, ever — no issuer, no revocation authority.
-- Run on Windows 10 and other systems where modern platform key-derivation (FIDO PRF) is unavailable.
 
 **It does not:**
 - Prove *who* you are to a stranger — only that you control this device.

@@ -33,7 +33,7 @@ Those are not missing features. They are the things the project exists to refuse
 
 ## 2. Host software — using the dongle wisely (open area)
 
-Everything described so far assumes the **host software** (the SSD app, the browser, the wallet) uses the dongle correctly. This is the project's least-developed area and its most important residual risk.
+Everything described so far assumes the **host software** (the browser, the wallet, or any host application) uses the dongle correctly. This is the project's least-developed area and its most important residual risk.
 
 The dongle is a sound primitive. A primitive used carelessly is still unsafe. Concretely, the host is responsible for:
 

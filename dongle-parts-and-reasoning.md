@@ -61,31 +61,15 @@ Physical protection and tamper-evidence. A well-fitted case makes opportunistic 
 
 ---
 
-## 3. Why This Exists — The SSD / Windows 10 Problem
+## 3. How It Connects and What It Returns
 
-The primary consuming application is SSD, targeting Windows 10 users.
-
-On Windows 10, the only generally available FIDO path is CTAP1/U2F — the original 2014 spec. It provides:
-
-- Presence-only authentication (button press on a hardware key)
-- No PRF extension (no symmetric key derivation)
-- No resident credentials worth using for this purpose
-
-CTAP2 with the PRF extension — which would provide hardware-bound symmetric key material natively — is a platform authenticator feature available on Windows 11 (via Windows Hello) and on same-device FIDO2 keys over USB/NFC. It is not reliably available on Windows 10, and the cross-device (hybrid/caBLE) PRF path remains unstandardised and unshipped as of mid-2026.
-
-The dongle fills this gap directly: it provides `HMAC(K, salt)` — the same function as FIDO PRF — over BLE, without requiring platform support, a £50+ hardware key, or an OS upgrade. On more modern systems (Windows 11, Android StrongBox, iOS Secure Enclave) the dongle is belt-and-braces alongside native platform PRF. On Windows 10 it is the only path.
-
----
-
-## 4. How It Connects and What It Returns
-
-### 4.1 Connection
+### 3.1 Connection
 
 Web Bluetooth (BLE GATT) from a Chromium-based browser. No driver, no native app, no USB. The user is assumed to be physically present — they provide the fingerprint.
 
 First connection requires pairing: the LED blinks the device static public key fingerprint; the host camera reads it; the browser pins that key. Subsequent ECDH key exchanges are authenticated against the pinned key, defeating BLE MITM substitution.
 
-### 4.2 Session Protocol
+### 3.2 Session Protocol
 
 | Step | Actor | Action |
 |---|---|---|
@@ -97,7 +81,7 @@ First connection requires pairing: the LED blinks the device static public key f
 | 6 | Dongle | Returns 32-byte result over encrypted channel |
 | 7 | Browser | Uses 32 bytes to unwrap key(s), performs operation, zeroes the 32 bytes immediately |
 
-### 4.3 What the Browser Does With the 32 Bytes
+### 3.3 What the Browser Does With the 32 Bytes
 
 The 32-byte output is used as a key-wrapping key (or KDF input) to unwrap the Data Encryption Key(s) for the encrypted store. Immediately after that operation the 32 bytes are zeroed from memory.
 
@@ -107,13 +91,13 @@ The consuming application decides granularity: one salt per session for a single
 
 ---
 
-## 5. Salt Ratchet — Rolling Double Copy
+## 4. Salt Ratchet — Rolling Double Copy
 
-### 5.1 The Problem It Solves
+### 4.1 The Problem It Solves
 
 A captured salt is a static credential: present it to the dongle and get the correct 32 bytes indefinitely. The salt ratchet limits the useful window of a captured salt to at most two genuine unlocks.
 
-### 5.2 Mechanism
+### 4.2 Mechanism
 
 | State | Detail |
 |---|---|
@@ -126,7 +110,7 @@ A captured salt is a static credential: present it to the dongle and get the cor
 
 Two copies are kept so a crash mid-rotation does not produce a state where neither salt is valid. On recovery, the system falls back to Salt N and re-attempts rotation.
 
-### 5.3 Threat Interactions
+### 4.3 Threat Interactions
 
 - **Stolen salt only** — useless after two genuine unlocks. Attacker must race before it rotates out.
 - **Stolen device only** — useless without the salt store. The device needs a valid salt as input.
@@ -135,7 +119,7 @@ Two copies are kept so a crash mid-rotation does not produce a state where neith
 
 ---
 
-## 6. Security Boundary Summary
+## 5. Security Boundary Summary
 
 - K never leaves the ESP32-C3 — eFuse read-protected, HMAC computed on-die.
 - Derived key material (32-byte output) exists in browser memory for milliseconds only — zeroed immediately after use.
