@@ -12,9 +12,9 @@ Please include enough detail to reproduce or understand the issue. We will respo
 
 At this stage Adelos is a published design. The attack surface includes:
 
-- The session protocol (ECDH, AEAD, salt ratchet)
+- The session protocol (ECDH, AEAD, device-originated nonce, salt ratchet)
 - The pairing channel (LED/camera fingerprint verification)
-- The verified-claims architecture (delegated self-signing, unlinkability)
+- The verified-claims architecture (anonymous credentials, unlinkability)
 - The hardware boundary assumptions (eFuse, HMAC-on-die, Secure Boot)
 
 Findings against the design are as welcome as findings against code.
