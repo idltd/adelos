@@ -1,6 +1,6 @@
 # Adelos — Futures
 
-Forward-looking design notes. These are directions, not finished specifications.
+Forward-looking design notes. The hardware design and commissioning pipeline are solid; what follows is where the project goes next.
 
 ---
 
@@ -52,11 +52,15 @@ Future work here:
 - A formal-ish checklist / conformance test for "is this host using the dongle safely."
 - Delivery-integrity measures for the host itself (reproducible builds, pinned service workers, SRI) so the host the user runs is the host that was audited.
 
-This section is explicitly an **open invitation**: the hardware and primitive are the easy part. Making hosts that use them wisely, by default, is where the project most needs design attention.
+This section is explicitly an **open invitation**: the hardware primitive is proven — the ESP32 commissioning pipeline works, the device design is solid. The open frontier is making hosts that use the primitive wisely, by default. That is where the project most needs design attention.
 
 ## 3. Other directions
 
+**Near term:**
+- **BLE session protocol and web library.** The design is complete and the implementation is straightforward — this is the next concrete build step.
 - **Multi-dongle sealed backup.** Provisioning that seals a recoverable secret to dongles 2 and 3 for safe-deposit/under-the-bed backup, so loss of the primary isn't catastrophic.
+
+**Further out:**
 - **Anonymous-credential integration.** A concrete BBS+ (or successor) binding so unlinkable predicate proofs are real, not just described.
 - **Standards interop.** Presenting as a W3C Verifiable Credentials holder/wallet so existing issuers and verifiers work without bespoke wire formats.
 - **Multi-transport.** USB/NFC alongside BLE for hosts and browsers without Web Bluetooth (noting the Chromium-only limitation of the web transports).
